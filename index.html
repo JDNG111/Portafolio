@@ -1,223 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LinguaBuddy Chatbot</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- GSAP para animaciones -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    
-    <style>
-        :root {
-            --primary-color: #5eb1ef;
-            --secondary-color: #1e293b;
-            --text-color: #e2e8f0;
-            --bg-color: #0f172a;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        header {
-            background-color: var(--secondary-color);
-            padding: 10px 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-        }
-        
-        .branding {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .logo {
-            width: 32px;
-            height: 32px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            opacity: 0;
-            transform: scale(0.5);
-        }
-        
-        .brand-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 0;
-            color: white;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .brand-tagline {
-            font-size: 0.8rem;
-            margin: 0;
-            opacity: 0.8;
-            opacity: 0;
-        }
-        
-        main {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(94, 177, 239, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        .loading-text {
-            margin-top: 20px;
-            font-size: 1.2rem;
-        }
-        
-        #chatbot-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            opacity: 0;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LinguaBuddy Chatbot</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: #0f172a;
+      font-family: sans-serif;
+    }
+
+    iframe {
+      border: none;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="branding">
-            <div class="logo">L</div>
-            <div>
-                <h1 class="brand-name">LinguaBuddy</h1>
-                <p class="brand-tagline">Mejora tus conversaciones en inglés</p>
-            </div>
-        </div>
-    </header>
-    
-    <main>
-        <div class="loading-overlay" id="loading-overlay">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Cargando tu asistente...</div>
-        </div>
-        
-        <!-- Usando el enlace específico para móviles -->
-        <iframe id="chatbot-iframe" src="https://files.bpcontent.cloud/2025/05/01/17/20250501171410-C139NP5W.html" allow="microphone *"></iframe>
-    </main>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animaciones del encabezado
-            const timeline = gsap.timeline();
-            
-            timeline.to(".logo", {
-                opacity: 1,
-                scale: 1,
-                duration: 0.8,
-                ease: "back.out(1.7)"
-            });
-            
-            timeline.to(".brand-name", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.4");
-            
-            timeline.to(".brand-tagline", {
-                opacity: 1,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.3");
-            
-            // Gestión del iframe
-            const iframe = document.getElementById('chatbot-iframe');
-            const loadingOverlay = document.getElementById('loading-overlay');
-            
-            // Cuando el iframe termine de cargar
-            iframe.onload = function() {
-                // Ocultamos la pantalla de carga
-                gsap.to(loadingOverlay, {
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: "power2.inOut",
-                    onComplete: () => {
-                        loadingOverlay.style.display = 'none';
-                        
-                        // Mostramos el iframe
-                        gsap.to(iframe, {
-                            opacity: 1,
-                            duration: 0.6,
-                            ease: "power2.out"
-                        });
-                        
-                        // Notificamos a la app Android si está disponible
-                        if (window.Android) {
-                            window.Android.onPageLoaded();
-                        }
-                    }
-                });
-            };
-            
-            // Ajustar el tamaño del iframe cuando cambie el tamaño de la ventana
-            function resizeIframe() {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const windowHeight = window.innerHeight;
-                iframe.style.height = (windowHeight - headerHeight) + 'px';
-            }
-            
-            // Ejecutar al inicio y cuando cambie el tamaño de la ventana
-            window.addEventListener('resize', resizeIframe);
-            resizeIframe();
-            
-            // Timeout de seguridad por si la carga del iframe falla
-            setTimeout(() => {
-                if (loadingOverlay.style.display !== 'none') {
-                    loadingOverlay.innerHTML = '<p>Hubo un problema al cargar el chatbot. Intenta recargar la página.</p>';
-                }
-            }, 15000);
-        });
-    </script>
+  <!-- ✅ Reemplaza el contenido con iframe directo -->
+  <iframe 
+    src="https://cdn.botpress.cloud/webchat/v2.4/shareable.html?configUrl=https://files.bpcontent.cloud/2025/05/01/16/20250501165805-XNKW5K2M.json&_gl=1*m04zl8*_gcl_aw*R0NMLjE3NDYxMTg1OTAuQ2owS0NRand0OHpBQmhES0FSSXNBSFh1RDdiQmxrLTZJbEZKeF9JRGVkN0Z4X0s5S3pFU1Rna2N2MUI2emxrbDVJUUxyTVQyc0RVYXFLY2FBbmJ5RUFMd193Y0I.*_gcl_au*MzE4Nzk0NTI4LjE3NDYxMTg1ODg.*_ga*Njc1NzQ1NTI1LjE3NDYxMTg1OTA.*_ga_HKHSWES9V9*MTc0NjEyODUzOC4yLjEuMTc0NjEzNDM2Ny41NS4wLjE1MTM4NzMwMjY." 
+    allow="microphone; camera">
+  </iframe>
 </body>
 </html>
