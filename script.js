@@ -18,7 +18,16 @@ function initPortfolioAnimations() {
                     gsap.to(element, {
                         width: width + '%',
                         duration: 1.5,
-                        ease: 'power3.out'
+                        ease: 'power3.out',
+                        onUpdate: function() {
+                            // Efecto de brillo durante la animación
+                            const progress = this.progress();
+                            const glow = progress * 10;
+                            element.style.boxShadow = `0 0 ${glow}px rgba(39, 174, 96, 0.5)`;
+                        },
+                        onComplete: function() {
+                            element.style.boxShadow = '0 0 10px rgba(39, 174, 96, 0.3)';
+                        }
                     });
                 }
             }
@@ -89,16 +98,23 @@ function initPortfolioAnimations() {
             gsap.to(card, {
                 scale: 1.02,
                 duration: 0.3,
-                ease: 'power2.out'
+                ease: 'power2.out',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
             });
+            
+            // Efecto de brillo en el borde
+            card.style.borderColor = 'var(--secondary-color)';
         });
         
         card.addEventListener('mouseleave', () => {
             gsap.to(card, {
                 scale: 1,
                 duration: 0.3,
-                ease: 'power2.out'
+                ease: 'power2.out',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)'
             });
+            
+            card.style.borderColor = '#e9ecef';
         });
     });
     
@@ -111,6 +127,15 @@ function initPortfolioAnimations() {
                 duration: 0.3,
                 ease: 'power2.out'
             });
+            
+            const circle = icon.querySelector('.skill-icon-circle');
+            if (circle) {
+                gsap.to(circle, {
+                    scale: 1.1,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            }
         });
         
         icon.addEventListener('mouseleave', () => {
@@ -119,6 +144,15 @@ function initPortfolioAnimations() {
                 duration: 0.3,
                 ease: 'power2.out'
             });
+            
+            const circle = icon.querySelector('.skill-icon-circle');
+            if (circle) {
+                gsap.to(circle, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            }
         });
     });
     
@@ -138,30 +172,56 @@ function initPortfolioAnimations() {
                 return;
             }
             
-            // Aquí normalmente enviarías el formulario a un servidor
-            // Por ahora solo mostraremos una alerta
-            alert('¡Mensaje enviado con éxito! Te contactaré pronto.');
-            contactForm.reset();
+            // Validación de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, ingresa un email válido.');
+                return;
+            }
             
-            // Animación de confirmación
-            gsap.fromTo('.btn-custom', 
-                { scale: 1 }, 
-                { scale: 1.1, duration: 0.2, yoyo: true, repeat: 1 }
-            );
+            // Simular envío
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            submitBtn.disabled = true;
+            
+            // Simular delay de envío
+            setTimeout(() => {
+                // Mostrar mensaje de éxito
+                alert('¡Mensaje enviado con éxito! Te contactaré pronto.');
+                contactForm.reset();
+                
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Animación de confirmación
+                gsap.fromTo(submitBtn, 
+                    { scale: 1 }, 
+                    { scale: 1.1, duration: 0.2, yoyo: true, repeat: 1 }
+                );
+            }, 1500);
         });
     }
     
     // Efecto de escritura para el título del hero (solo en index.html)
     const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle && window.location.pathname.includes('index.html') || window.location.pathname === '/') {
-        const text = heroTitle.textContent;
+    if (heroTitle && (window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname === '')) {
+        const originalText = heroTitle.textContent;
         heroTitle.textContent = '';
         
         let i = 0;
         const typeWriter = () => {
-            if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
+            if (i < originalText.length) {
+                heroTitle.textContent += originalText.charAt(i);
                 i++;
+                
+                // Efecto de sonido de teclado (opcional)
+                if (i % 3 === 0) {
+                    // Aquí podrías agregar un sonido de teclado si quieres
+                }
+                
                 setTimeout(typeWriter, 50);
             }
         };
@@ -169,30 +229,94 @@ function initPortfolioAnimations() {
         // Iniciar efecto de escritura después de que cargue la página
         setTimeout(typeWriter, 1000);
     }
+    
+    // Efecto de parpadeo en el cursor (opcional)
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--secondary-color);
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            vertical-align: baseline;
+            height: 1.2em;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Añadir cursor parpadeante al título si estamos en la página de inicio
+    if (heroTitle && (window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname === '')) {
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        heroTitle.appendChild(cursor);
+        
+        // Remover cursor cuando termine la animación
+        setTimeout(() => {
+            cursor.remove();
+        }, originalText.length * 50 + 1000);
+    }
 }
 
 // Asegurar que las animaciones se ejecuten cuando la página esté completamente cargada
 window.addEventListener('load', function() {
     // Si el loader ya se ha ocultado, inicializar animaciones
-    if (document.getElementById('loader') && document.getElementById('loader').style.display === 'none') {
+    const loader = document.getElementById('loader');
+    if (loader && loader.style.display === 'none') {
         initPortfolioAnimations();
     }
 });
 
-// Inicializar cuando se cambia de página (para SPA-like behavior)
-if (window.history.pushState) {
-    const originalPushState = window.history.pushState;
-    window.history.pushState = function() {
-        originalPushState.apply(this, arguments);
-        window.dispatchEvent(new Event('locationchange'));
+// Manejar cambios de página
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar animaciones cuando se carga la página
+    setTimeout(() => {
+        if (typeof initPortfolioAnimations === 'function') {
+            initPortfolioAnimations();
+        }
+    }, 100);
+    
+    // Manejar enlaces activos en el navbar
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        
+        // Para enlaces internos en la misma página
+        if (linkHref.startsWith('#')) {
+            if (window.location.hash === linkHref) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        } 
+        // Para enlaces a otras páginas
+        else if (linkHref === currentPage || 
+                 (currentPage === '' && linkHref === 'index.html') ||
+                 (currentPage.includes('index.html') && linkHref === 'index.html')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+});
+
+// Mejorar experiencia en móviles
+if ('ontouchstart' in window) {
+    document.body.classList.add('touch-device');
+    
+    // Añadir padding al bottom para evitar que el contenido quede detrás del navbar en iOS
+    const setSafeArea = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
     
-    window.addEventListener('popstate', () => {
-        window.dispatchEvent(new Event('locationchange'));
-    });
+    window.addEventListener('resize', setSafeArea);
+    setSafeArea();
 }
-
-// Reiniciar animaciones cuando se cambia de página
-window.addEventListener('locationchange', function() {
-    setTimeout(initPortfolioAnimations, 100);
-});
