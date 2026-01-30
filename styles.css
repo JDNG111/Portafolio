@@ -1,11 +1,13 @@
 :root {
-    --primary-color: #1a3c2e;
-    --secondary-color: #27ae60;
-    --accent-color: #e74c3c;
-    --light-color: #ecf0f1;
-    --dark-color: #0c2118;
-    --success-color: #2ecc71;
-    --hover-color: #229954;
+    --primary-color: #1e5631;
+    --secondary-color: #4CAF50;
+    --accent-color: #FF5722;
+    --light-color: #f8f9fa;
+    --dark-color: #0d2818;
+    --success-color: #2E7D32;
+    --hover-color: #45a049;
+    --social-bg: rgba(255, 255, 255, 0.1);
+    --social-hover: #4CAF50;
 }
 
 * {
@@ -63,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 3px;
-    text-shadow: 0 0 10px rgba(39, 174, 96, 0.5);
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
 #loader-subtitle {
@@ -82,20 +84,19 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 2px;
     overflow: hidden;
     position: relative;
-    left: 0;
 }
 
 .loader-progress-bar {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, var(--secondary-color), #2ecc71);
+    background: linear-gradient(90deg, var(--secondary-color), #66BB6A);
     border-radius: 2px;
-    box-shadow: 0 0 10px rgba(39, 174, 96, 0.5);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
 /* ===== NAVBAR ===== */
 .navbar {
-    background-color: rgba(12, 33, 24, 0.95);
+    background-color: rgba(13, 40, 24, 0.95);
     padding: 20px 0;
     transition: all 0.4s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -103,7 +104,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar.scrolled {
     padding: 12px 0;
-    background-color: rgba(12, 33, 24, 0.98);
+    background-color: rgba(13, 40, 24, 0.98);
 }
 
 .navbar-brand {
@@ -204,7 +205,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     border: none;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
@@ -214,7 +215,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--hover-color);
     color: white !important;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
 }
 
 .btn-outline-custom {
@@ -365,7 +366,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .skill-percentage {
     height: 100%;
-    background: linear-gradient(90deg, var(--secondary-color), #2ecc71);
+    background: linear-gradient(90deg, var(--secondary-color), #66BB6A);
     border-radius: 5px;
     width: 0;
     transition: width 1.5s ease;
@@ -375,7 +376,7 @@ h1, h2, h3, h4, h5, h6 {
 .skill-icon-circle {
     width: 100px;
     height: 100px;
-    background-color: rgba(39, 174, 96, 0.1);
+    background-color: rgba(76, 175, 80, 0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -391,8 +392,34 @@ h1, h2, h3, h4, h5, h6 {
 
 .skill-icon:hover .skill-icon-circle {
     transform: translateY(-10px);
-    background-color: rgba(39, 174, 96, 0.2);
-    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.2);
+    background-color: rgba(76, 175, 80, 0.2);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+}
+
+/* ===== SOCIAL ICONS CORREGIDOS ===== */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--social-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-icon:hover {
+    background-color: var(--social-hover);
+    transform: translateY(-5px);
+    color: white !important;
 }
 
 /* ===== FOOTER ===== */
@@ -417,29 +444,6 @@ h1, h2, h3, h4, h5, h6 {
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 30px;
     max-width: 300px;
-}
-
-.social-icons {
-    display: flex;
-    gap: 15px;
-}
-
-.social-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.social-icon:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-5px);
 }
 
 .footer-links h5 {
@@ -506,7 +510,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
 }
 
 .back-to-top.show {
@@ -628,7 +632,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .tech-badge {
     display: inline-block;
-    background-color: rgba(39, 174, 96, 0.1);
+    background-color: rgba(76, 175, 80, 0.1);
     color: var(--secondary-color);
     padding: 5px 12px;
     border-radius: 20px;
@@ -636,7 +640,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     margin-right: 8px;
     margin-bottom: 10px;
-    border: 1px solid rgba(39, 174, 96, 0.2);
+    border: 1px solid rgba(76, 175, 80, 0.2);
 }
 
 .project-links {
@@ -670,14 +674,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact-item:hover {
-    background-color: rgba(39, 174, 96, 0.05);
+    background-color: rgba(76, 175, 80, 0.05);
     transform: translateX(5px);
 }
 
 .contact-icon {
     width: 50px;
     height: 50px;
-    background-color: rgba(39, 174, 96, 0.1);
+    background-color: rgba(76, 175, 80, 0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -706,7 +710,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-control:focus {
     border-color: var(--secondary-color);
-    box-shadow: 0 0 0 0.2rem rgba(39, 174, 96, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
 }
 
 .form-control::placeholder {
@@ -757,14 +761,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .cv-info {
     padding: 20px;
-    background-color: rgba(39, 174, 96, 0.05);
+    background-color: rgba(76, 175, 80, 0.05);
     border-radius: 10px;
     border-left: 4px solid var(--secondary-color);
 }
 
 .alert-info {
-    background-color: rgba(39, 174, 96, 0.1);
-    border-color: rgba(39, 174, 96, 0.3);
+    background-color: rgba(76, 175, 80, 0.1);
+    border-color: rgba(76, 175, 80, 0.3);
     color: var(--primary-color);
 }
 
