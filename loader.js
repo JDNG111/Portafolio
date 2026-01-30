@@ -1,4 +1,4 @@
-// Pantalla de carga con Three.js y GSAP - FIGURA INFINITO
+// Pantalla de carga con Three.js y GSAP - FIGURA INFINITO MEJORADA
 document.addEventListener('DOMContentLoaded', function() {
     // Crear escena Three.js para el loader
     const scene = new THREE.Scene();
@@ -13,78 +13,128 @@ document.addEventListener('DOMContentLoaded', function() {
     renderer.setClearColor(0x000000, 0);
     document.getElementById('loader').appendChild(renderer.domElement);
     
-    // Crear figura de infinito (lemniscata)
-    const createInfinityShape = () => {
-        const curve = new THREE.CatmullRomCurve3([
-            new THREE.Vector3(0, 0, 0),
-            new THREE.Vector3(5, 5, 0),
-            new THREE.Vector3(0, 0, 0),
-            new THREE.Vector3(-5, 5, 0),
-            new THREE.Vector3(0, 0, 0),
-            new THREE.Vector3(5, -5, 0),
-            new THREE.Vector3(0, 0, 0),
-            new THREE.Vector3(-5, -5, 0),
-            new THREE.Vector3(0, 0, 0)
-        ]);
+    // Función para crear una figura de infinito (lemniscata de Bernoulli)
+    const createInfinitySymbol = () => {
+        const points = [];
+        const segments = 200;
         
-        const points = curve.getPoints(100);
-        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        // Parámetros para la lemniscata
+        const a = 10;
         
-        const material = new THREE.LineBasicMaterial({ 
-            color: 0x3498db,
-            linewidth: 3,
+        for (let i = 0; i <= segments; i++) {
+            const t = (i / segments) * Math.PI * 2;
+            
+            // Ecuaciones paramétricas de la lemniscata
+            const x = (a * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
+            const y = (a * Math.sin(t) * Math.cos(t)) / (1 + Math.sin(t) * Math.sin(t));
+            
+            points.push(new THREE.Vector3(x, y, 0));
+        }
+        
+        // Crear curva suave
+        const curve = new THREE.CatmullRomCurve3(points);
+        curve.closed = true;
+        
+        const tubeGeometry = new THREE.TubeGeometry(curve, 200, 0.5, 8, true);
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x27ae60,
+            wireframe: false,
             transparent: true,
-            opacity: 0.9
+            opacity: 0.9,
+            side: THREE.DoubleSide
         });
         
-        const infinityLine = new THREE.Line(geometry, material);
-        return infinityLine;
-    };
-    
-    // Crear figura de infinito 3D
-    const createInfinity3D = () => {
-        // Crear torus knots para simular infinito
-        const geometry1 = new THREE.TorusKnotGeometry(8, 2, 64, 8, 2, 3);
-        const geometry2 = new THREE.TorusKnotGeometry(8, 2, 64, 8, 2, 3);
+        const infinityMesh = new THREE.Mesh(tubeGeometry, material);
         
-        const material1 = new THREE.MeshBasicMaterial({ 
-            color: 0x3498db,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.8
-        });
-        
-        const material2 = new THREE.MeshBasicMaterial({ 
-            color: 0xe74c3c,
-            wireframe: true,
+        // Crear un borde brillante
+        const wireframe = new THREE.WireframeGeometry(tubeGeometry);
+        const lineMaterial = new THREE.LineBasicMaterial({
+            color: 0x2ecc71,
+            linewidth: 2,
             transparent: true,
             opacity: 0.8
         });
         
-        const infinity1 = new THREE.Mesh(geometry1, material1);
-        const infinity2 = new THREE.Mesh(geometry2, material2);
-        
-        infinity2.rotation.x = Math.PI / 2;
-        infinity2.rotation.y = Math.PI / 4;
+        const infinityWireframe = new THREE.LineSegments(wireframe, lineMaterial);
         
         const group = new THREE.Group();
-        group.add(infinity1);
-        group.add(infinity2);
+        group.add(infinityMesh);
+        group.add(infinityWireframe);
+        
+        return group;
+    };
+    
+    // Función alternativa: crear infinito con torus knots entrelazados
+    const createDoubleInfinity = () => {
+        const group = new THREE.Group();
+        
+        // Primer torus knot (infinito)
+        const geometry1 = new THREE.TorusKnotGeometry(8, 2, 128, 16, 2, 3);
+        const material1 = new THREE.MeshBasicMaterial({
+            color: 0x27ae60,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.8
+        });
+        
+        const knot1 = new THREE.Mesh(geometry1, material1);
+        group.add(knot1);
+        
+        // Segundo torus knot rotado (forma el otro lado del infinito)
+        const geometry2 = new THREE.TorusKnotGeometry(8, 2, 128, 16, 2, 3);
+        const material2 = new THREE.MeshBasicMaterial({
+            color: 0x2ecc71,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.6
+        });
+        
+        const knot2 = new THREE.Mesh(geometry2, material2);
+        knot2.rotation.x = Math.PI;
+        knot2.rotation.y = Math.PI / 2;
+        group.add(knot2);
+        
+        // Puntos brillantes que siguen la curva
+        const pointsGeometry = new THREE.BufferGeometry();
+        const pointsCount = 100;
+        const positions = new Float32Array(pointsCount * 3);
+        
+        for (let i = 0; i < pointsCount; i++) {
+            const t = (i / pointsCount) * Math.PI * 2;
+            const r = 8 + 2 * Math.cos(3 * t);
+            
+            positions[i * 3] = r * Math.cos(t);
+            positions[i * 3 + 1] = r * Math.sin(t) * Math.cos(t);
+            positions[i * 3 + 2] = r * Math.sin(t);
+        }
+        
+        pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        
+        const pointsMaterial = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.3,
+            transparent: true,
+            opacity: 0.7,
+            sizeAttenuation: true
+        });
+        
+        const points = new THREE.Points(pointsGeometry, pointsMaterial);
+        group.add(points);
         
         return group;
     };
     
     // Crear partículas para el fondo
-    const createParticles = () => {
+    const createStarfield = () => {
         const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 2000;
+        const particlesCount = 1500;
         
         const posArray = new Float32Array(particlesCount * 3);
-        const colorArray = new Float32Array(particlesCount * 3);
+        const sizeArray = new Float32Array(particlesCount);
         
         for(let i = 0; i < particlesCount * 3; i += 3) {
             // Posiciones aleatorias en un espacio esférico
-            const radius = 30;
+            const radius = 50 + Math.random() * 100;
             const theta = Math.random() * Math.PI * 2;
             const phi = Math.acos((Math.random() * 2) - 1);
             
@@ -92,90 +142,150 @@ document.addEventListener('DOMContentLoaded', function() {
             posArray[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
             posArray[i + 2] = radius * Math.cos(phi);
             
-            // Colores aleatorios entre azul y morado
-            colorArray[i] = Math.random() * 0.5 + 0.2;     // R
-            colorArray[i + 1] = Math.random() * 0.3 + 0.3; // G
-            colorArray[i + 2] = Math.random() * 0.8 + 0.2; // B
+            sizeArray[i / 3] = Math.random() * 0.5 + 0.1;
         }
         
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+        particlesGeometry.setAttribute('size', new THREE.BufferAttribute(sizeArray, 1));
         
         const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.1,
-            vertexColors: true,
+            color: 0xffffff,
+            size: 0.2,
             transparent: true,
-            opacity: 0.8
+            opacity: 0.6,
+            sizeAttenuation: true,
+            vertexColors: false
         });
         
         return new THREE.Points(particlesGeometry, particlesMaterial);
     };
     
     // Crear elementos
-    const infinityShape = createInfinity3D();
-    const particles = createParticles();
+    const infinitySymbol = createDoubleInfinity();
+    const starfield = createStarfield();
     
-    scene.add(infinityShape);
-    scene.add(particles);
+    scene.add(infinitySymbol);
+    scene.add(starfield);
     
-    camera.position.z = 30;
+    camera.position.z = 35;
     
-    // Luz ambiental
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    // Luces
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
     scene.add(ambientLight);
     
-    // Luz direccional
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(10, 10, 10);
+    directionalLight.position.set(5, 10, 7);
     scene.add(directionalLight);
     
+    const pointLight = new THREE.PointLight(0x27ae60, 1, 100);
+    pointLight.position.set(10, 10, 10);
+    scene.add(pointLight);
+    
     // Animación del loader con GSAP
-    gsap.to(infinityShape.rotation, {
+    // Rotación principal del infinito
+    gsap.to(infinitySymbol.rotation, {
         x: Math.PI * 4,
         y: Math.PI * 4,
-        z: Math.PI * 4,
-        duration: 20,
+        z: Math.PI * 2,
+        duration: 25,
         repeat: -1,
-        ease: 'power1.inOut'
+        ease: 'none'
     });
     
     // Animación de escalado pulsante
-    gsap.to(infinityShape.scale, {
-        x: 1.2,
-        y: 1.2,
-        z: 1.2,
+    gsap.to(infinitySymbol.scale, {
+        x: 1.1,
+        y: 1.1,
+        z: 1.1,
         duration: 2,
         repeat: -1,
         yoyo: true,
         ease: 'sine.inOut'
     });
     
-    // Animación de partículas
-    gsap.to(particles.rotation, {
-        x: Math.PI * 2,
-        y: Math.PI * 2,
-        duration: 30,
+    // Animación de la luz puntual
+    gsap.to(pointLight.position, {
+        x: -10,
+        y: -10,
+        z: 10,
+        duration: 5,
         repeat: -1,
-        ease: 'none'
+        yoyo: true,
+        ease: 'sine.inOut'
+    });
+    
+    // Animación de opacidad
+    infinitySymbol.children.forEach((child, index) => {
+        if (child.material) {
+            gsap.to(child.material, {
+                opacity: index === 2 ? 0.9 : 0.4,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: index * 0.5
+            });
+        }
     });
     
     // Animar título y subtítulo con GSAP
     gsap.fromTo("#loader-title", 
-        { opacity: 0, y: -50, scale: 0.8 }, 
-        { opacity: 1, y: 0, scale: 1, duration: 1.5, ease: "back.out(1.7)" }
+        { 
+            opacity: 0, 
+            y: -50, 
+            scale: 0.8,
+            filter: "blur(10px)"
+        }, 
+        { 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1.5, 
+            ease: "back.out(1.7)" 
+        }
     );
     
     gsap.fromTo("#loader-subtitle", 
-        { opacity: 0, y: -30, scale: 0.9 }, 
-        { opacity: 1, y: 0, scale: 1, duration: 1.5, ease: "back.out(1.7)", delay: 0.5 }
+        { 
+            opacity: 0, 
+            y: -30, 
+            scale: 0.9,
+            filter: "blur(5px)" 
+        }, 
+        { 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1.5, 
+            ease: "back.out(1.7)", 
+            delay: 0.5 
+        }
     );
+    
+    // Centrar la barra de carga
+    const progressBar = document.querySelector('.loader-progress');
+    if (progressBar) {
+        progressBar.style.marginLeft = 'auto';
+        progressBar.style.marginRight = 'auto';
+    }
     
     // Animar la barra de progreso
     gsap.to(".loader-progress-bar", {
         width: "100%",
         duration: 6,
         ease: "power2.inOut",
-        delay: 0.8
+        delay: 0.8,
+        onUpdate: function() {
+            // Efecto de brillo en la barra
+            const progress = this.progress();
+            const bar = document.querySelector('.loader-progress-bar');
+            if (bar) {
+                const intensity = Math.sin(progress * Math.PI) * 0.5 + 0.5;
+                bar.style.boxShadow = `0 0 ${10 + intensity * 20}px rgba(39, 174, 96, ${0.3 + intensity * 0.4})`;
+            }
+        }
     });
     
     // Función de renderizado
@@ -186,18 +296,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const elapsedTime = clock.getElapsedTime();
         
-        // Animación suave de las partículas
-        particles.rotation.x = elapsedTime * 0.05;
-        particles.rotation.y = elapsedTime * 0.03;
+        // Animación suave de las estrellas
+        starfield.rotation.x = elapsedTime * 0.01;
+        starfield.rotation.y = elapsedTime * 0.005;
         
-        // Efecto de movimiento sutil en la cámara
-        camera.position.x = Math.sin(elapsedTime * 0.1) * 2;
-        camera.position.y = Math.cos(elapsedTime * 0.1) * 2;
+        // Movimiento sutil de la cámara
+        camera.position.x = Math.sin(elapsedTime * 0.1) * 1;
+        camera.position.y = Math.cos(elapsedTime * 0.07) * 1;
         
-        // Efecto de brillo en el infinito
-        infinityShape.children.forEach((child, index) => {
-            child.material.opacity = 0.7 + Math.sin(elapsedTime * 2 + index) * 0.3;
-        });
+        // Efecto de pulsación en el infinito
+        const scale = 1 + Math.sin(elapsedTime * 2) * 0.05;
+        infinitySymbol.children[0].scale.set(scale, scale, scale);
+        
+        // Rotación adicional para las partículas dentro del infinito
+        if (infinitySymbol.children[2]) {
+            infinitySymbol.children[2].rotation.x = elapsedTime * 0.5;
+            infinitySymbol.children[2].rotation.y = elapsedTime * 0.3;
+        }
         
         renderer.render(scene, camera);
     }
