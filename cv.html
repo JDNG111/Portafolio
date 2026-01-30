@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Curriculum Vitae</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- LOADER -->
+    <div id="loader">
+        <div id="text-container">
+            <h1 id="loader-title">Cargando CV</h1>
+            <h2 id="loader-subtitle">Curriculum Vitae</h2>
+            <div class="loader-progress">
+                <div class="loader-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Portafolio<span>.</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">Sobre mí</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="proyectos.html">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#skills">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="cv.html">CV</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CV SECTION -->
+    <section class="cv-page section">
+        <div class="container">
+            <div class="cv-container reveal">
+                <h1 class="section-title text-start mb-4">Curriculum Vitae</h1>
+                
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="cv-preview">
+                            <img src="https://res.cloudinary.com/elmomaso/image/upload/v1769794078/Curr%C3%ADculum_Vitae_CV_modelo_ATS_Harvard_blanco_sencillo_ssvum5.png" 
+                                 alt="Curriculum Vitae" 
+                                 class="img-fluid cv-image"
+                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/800x1000/2c3e50/ffffff?text=CV+No+Disponible'">
+                        </div>
+                        
+                        <div class="cv-download-btn">
+                            <a href="https://res.cloudinary.com/elmomaso/image/upload/v1769794078/Curr%C3%ADculum_Vitae_CV_modelo_ATS_Harvard_blanco_sencillo_ssvum5.png" 
+                               download="Curriculum_Vitae.pdf" 
+                               class="btn-custom btn-lg">
+                                <i class="fas fa-download me-2"></i>Descargar CV (PDF)
+                            </a>
+                            <a href="index.html" class="btn-outline-custom btn-lg ms-3">
+                                <i class="fas fa-arrow-left me-2"></i>Volver al Inicio
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="cv-info reveal">
+                            <h3 class="mb-4" style="color: var(--primary-color);">Información del CV</h3>
+                            
+                            <div class="mb-4">
+                                <h5><i class="fas fa-user-circle me-2" style="color: var(--secondary-color);"></i>Datos Personales</h5>
+                                <p>Nombre completo, información de contacto, ubicación y enlaces profesionales.</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5><i class="fas fa-graduation-cap me-2" style="color: var(--secondary-color);"></i>Educación</h5>
+                                <p>Títulos académicos, certificaciones y formación especializada.</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5><i class="fas fa-briefcase me-2" style="color: var(--secondary-color);"></i>Experiencia Laboral</h5>
+                                <p>Historial profesional, roles desempeñados y logros destacados.</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5><i class="fas fa-code me-2" style="color: var(--secondary-color);"></i>Habilidades Técnicas</h5>
+                                <p>Lenguajes de programación, frameworks, herramientas y tecnologías dominadas.</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5><i class="fas fa-project-diagram me-2" style="color: var(--secondary-color);"></i>Proyectos Destacados</h5>
+                                <p>Trabajos relevantes que demuestran experiencia y competencias.</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5><i class="fas fa-language me-2" style="color: var(--secondary-color);"></i>Idiomas</h5>
+                                <p>Idiomas hablados y niveles de competencia.</p>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Nota:</strong> Este es un modelo de CV ATS compatible. Para una versión actualizada, contacta directamente.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo">Portafolio<span>.</span></div>
+                    <p class="footer-description">
+                        Desarrollador Full Stack especializado en crear soluciones digitales innovadoras y eficientes.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-links">
+                        <h5>Enlaces Rápidos</h5>
+                        <ul>
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="index.html#about">Sobre Mí</a></li>
+                            <li><a href="proyectos.html">Proyectos</a></li>
+                            <li><a href="index.html#skills">Habilidades</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-links">
+                        <h5>Documentos</h5>
+                        <ul>
+                            <li><a href="cv.html" class="active">Curriculum Vitae</a></li>
+                            <li><a href="#">Certificaciones</a></li>
+                            <li><a href="#">Portafolio PDF</a></li>
+                            <li><a href="#">Referencias</a></li>
+                            <li><a href="#">Cartas de Recomendación</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Portafolio Profesional. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="loader.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
