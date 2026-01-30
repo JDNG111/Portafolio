@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Proyectos</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- LOADER -->
+    <div id="loader">
+        <div id="text-container">
+            <h1 id="loader-title">Cargando Proyectos</h1>
+            <h2 id="loader-subtitle">Mis Trabajos</h2>
+            <div class="loader-progress">
+                <div class="loader-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Portafolio<span>.</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">Sobre mí</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="proyectos.html">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#skills">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cv.html">CV</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section" style="padding-top: 150px;">
+        <div class="container">
+            <h2 class="section-title reveal">Mis Proyectos</h2>
+            <p class="section-subtitle reveal">
+                Aquí puedes ver algunos de los proyectos en los que he trabajado. Cada uno representa un desafío único y una oportunidad para aplicar mis habilidades.
+            </p>
+            
+            <div class="row">
+                <!-- Proyecto 1: Tesis Angular + Flask + Firestore -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Sistema de Gestión Académica">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Sistema de Gestión Académica</h3>
+                            <p class="project-description">
+                                Plataforma web desarrollada como trabajo de tesis para la gestión integral de procesos académicos en instituciones educativas.
+                            </p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Angular</span>
+                                <span class="tech-badge">Flask</span>
+                                <span class="tech-badge">Firebase Firestore</span>
+                                <span class="tech-badge">TypeScript</span>
+                                <span class="tech-badge">Python</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Demo
+                                </a>
+                                <a href="#" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fab fa-github me-2"></i>Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 2: App Móvil Kotlin + Firebase + Botpress -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="App de Asistente Virtual">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Asistente Virtual Inteligente</h3>
+                            <p class="project-description">
+                                Aplicación móvil con asistente virtual integrado para automatización de tareas, recordatorios y gestión personal mediante IA conversacional.
+                            </p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Kotlin</span>
+                                <span class="tech-badge">Firebase</span>
+                                <span class="tech-badge">Botpress</span>
+                                <span class="tech-badge">Android SDK</span>
+                                <span class="tech-badge">Chatbot API</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Demo
+                                </a>
+                                <a href="#" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fab fa-github me-2"></i>Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 3: Sistema de Votaciones SPA + Firebase -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Sistema de Votaciones">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Sistema de Votaciones Institucionales</h3>
+                            <p class="project-description">
+                                Aplicación web SPA para procesos electorales seguros y transparentes en instituciones, con autenticación y resultados en tiempo real.
+                            </p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Vue.js</span>
+                                <span class="tech-badge">Firebase</span>
+                                <span class="tech-badge">Cloud Functions</span>
+                                <span class="tech-badge">Authentication</span>
+                                <span class="tech-badge">Real-time DB</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Demo
+                                </a>
+                                <a href="#" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fab fa-github me-2"></i>Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Más proyectos -->
+            <div class="row mt-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="E-commerce">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Plataforma E-commerce</h3>
+                            <p class="project-description">
+                                Tienda en línea completa con carrito de compras, pasarela de pagos y panel de administración.
+                            </p>
+                            <div class="mb-3">
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">MongoDB</span>
+                                <span class="tech-badge">Stripe API</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Demo
+                                </a>
+                                <a href="#" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fab fa-github me-2"></i>Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dashboard Analytics">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Dashboard de Analytics</h3>
+                            <p class="project-description">
+                                Panel de control interactivo para visualización de datos con gráficos en tiempo real y reportes personalizados.
+                            </p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Vue.js</span>
+                                <span class="tech-badge">D3.js</span>
+                                <span class="tech-badge">Express.js</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Demo
+                                </a>
+                                <a href="#" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fab fa-github me-2"></i>Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="API Rest">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">API REST Microservicios</h3>
+                            <p class="project-description">
+                                Arquitectura de microservicios con API Gateway, autenticación JWT y despliegue en contenedores Docker.
+                            </p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">Docker</span>
+                                <span class="tech-badge">Kubernetes</span>
+                                <span class="tech-badge">Redis</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Demo
+                                </a>
+                                <a href="#" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fab fa-github me-2"></i>Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo">Portafolio<span>.</span></div>
+                    <p class="footer-description">
+                        Desarrollador Full Stack especializado en crear soluciones digitales innovadoras y eficientes.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-links">
+                        <h5>Enlaces Rápidos</h5>
+                        <ul>
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="index.html#about">Sobre Mí</a></li>
+                            <li><a href="proyectos.html" class="active">Proyectos</a></li>
+                            <li><a href="index.html#skills">Habilidades</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-links">
+                        <h5>Categorías de Proyectos</h5>
+                        <ul>
+                            <li><a href="#">Desarrollo Web</a></li>
+                            <li><a href="#">Aplicaciones Móviles</a></li>
+                            <li><a href="#">APIs y Backend</a></li>
+                            <li><a href="#">Base de Datos</a></li>
+                            <li><a href="#">DevOps & Cloud</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Portafolio Profesional. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="loader.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
