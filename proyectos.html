@@ -19,6 +19,55 @@
     
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Estilos adicionales para las tarjetas de proyectos */
+        .tech-badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .project-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            max-height: 80px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .project-card:hover .project-description {
+            max-height: 200px;
+        }
+        
+        .project-features {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e9ecef;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-features {
+            opacity: 1;
+        }
+        
+        .project-features i {
+            color: var(--secondary-color);
+            margin-right: 5px;
+            font-size: 0.75rem;
+        }
+        
+        .feature-item {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
     <!-- LOADER -->
@@ -84,18 +133,23 @@
                             <p class="project-description">
                                 Aplicación web desarrollada como trabajo de grado para la predicción del metro cuadrado de un inmueble en la ciudad de Santiago de Cali.
                             </p>
-                            <div class="mb-3">
+                            <div class="tech-badge-group">
                                 <span class="tech-badge">Angular</span>
                                 <span class="tech-badge">Flask</span>
                                 <span class="tech-badge">Firebase Firestore</span>
                                 <span class="tech-badge">TypeScript</span>
                                 <span class="tech-badge">Python</span>
                             </div>
+                            <div class="project-features">
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Predicción ML</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Dashboard interactivo</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Visualización de datos</div>
+                            </div>
                             <div class="project-links">
-                                <a href="https://precio-inteligente.onrender.com/" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <a href="https://precio-inteligente.onrender.com/" target="_blank" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
                                     <i class="fas fa-external-link-alt me-2"></i>Ver Demo
                                 </a>
-                                <a href="https://precio-inteligente.onrender.com/" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <a href="https://github.com/JDNG111/precio-inteligente" target="_blank" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
                                     <i class="fab fa-github me-2"></i>Código
                                 </a>
                             </div>
@@ -114,17 +168,23 @@
                             <p class="project-description">
                                 Aplicación móvil para estudiar lenguas extranjeras mediante diferentes lecciones y una IA conversacional.
                             </p>
-                            <div class="mb-3">
+                            <div class="tech-badge-group">
                                 <span class="tech-badge">Kotlin</span>
                                 <span class="tech-badge">Firebase</span>
                                 <span class="tech-badge">Android SDK</span>
                                 <span class="tech-badge">Chatbot API</span>
+                                <span class="tech-badge">Material Design</span>
+                            </div>
+                            <div class="project-features">
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> IA conversacional</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Lecciones interactivas</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Modo offline</div>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/JDNG111/Corte3_app" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <a href="https://github.com/JDNG111/Corte3_app" target="_blank" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
                                     <i class="fas fa-external-link-alt me-2"></i>Ver Demo
                                 </a>
-                                <a href="https://github.com/JDNG111/Corte3_app" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <a href="https://github.com/JDNG111/Corte3_app" target="_blank" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
                                     <i class="fab fa-github me-2"></i>Código
                                 </a>
                             </div>
@@ -143,17 +203,23 @@
                             <p class="project-description">
                                 Aplicación web SPA para procesos electorales seguros y transparentes en instituciones, con autenticación y resultados en tiempo real.
                             </p>
-                            <div class="mb-3">
+                            <div class="tech-badge-group">
                                 <span class="tech-badge">SPA</span>
                                 <span class="tech-badge">Firebase</span>
                                 <span class="tech-badge">Authentication</span>
                                 <span class="tech-badge">Real-time DB</span>
+                                <span class="tech-badge">Bootstrap</span>
+                            </div>
+                            <div class="project-features">
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Autenticación segura</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Resultados en tiempo real</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Panel de administración</div>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/JDNG111/Sistema_Electoral" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <a href="https://github.com/JDNG111/Sistema_Electoral" target="_blank" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
                                     <i class="fas fa-external-link-alt me-2"></i>Ver Demo
                                 </a>
-                                <a href="https://github.com/JDNG111/Sistema_Electoral" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                <a href="https://github.com/JDNG111/Sistema_Electoral" target="_blank" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
                                     <i class="fab fa-github me-2"></i>Código
                                 </a>
                             </div>
@@ -162,7 +228,88 @@
                 </div>
             </div>
             
-            <!-- Más proyectos --> 
+            <!-- Segunda fila de proyectos -->
+            <div class="row mt-4">
+                <!-- Proyecto 4: Restoran - Aplicación Laravel -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Restoran - Aplicación Web para Restaurante">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Restoran - Gestión de Restaurante</h3>
+                            <p class="project-description">
+                                Aplicación web completa para la gestión de restaurantes desarrollada con Laravel 12. Permite a usuarios explorar el menú, realizar reservas, gestionar pedidos y a administradores controlar todas las operaciones.
+                            </p>
+                            <div class="tech-badge-group">
+                                <span class="tech-badge">Laravel 12</span>
+                                <span class="tech-badge">PHP 8.2</span>
+                                <span class="tech-badge">MySQL</span>
+                                <span class="tech-badge">Bootstrap 5</span>
+                                <span class="tech-badge">Chart.js</span>
+                            </div>
+                            <div class="project-features">
+                                <div class="feature-item"><i class="fas fa-utensils"></i> Menú interactivo</div>
+                                <div class="feature-item"><i class="fas fa-calendar-check"></i> Reservas online</div>
+                                <div class="feature-item"><i class="fas fa-shopping-cart"></i> Carrito de compras</div>
+                                <div class="feature-item"><i class="fab fa-paypal"></i> Paypal</div>
+                                <div class="feature-item"><i class="fas fa-chart-bar"></i> Dashboard admin</div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/JDNG111/restoran" target="_blank" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Demo
+                                </a>
+                                <a href="https://github.com/JDNG111/restoran" target="_blank" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fab fa-github me-2"></i>Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Espacio para futuros proyectos -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card reveal" style="border: 2px dashed var(--secondary-color); background-color: rgba(76, 175, 80, 0.05);">
+                        <div class="project-content text-center py-5">
+                            <i class="fas fa-code-branch" style="font-size: 4rem; color: var(--secondary-color); margin-bottom: 20px;"></i>
+                            <h3 class="project-title">¡Próximamente!</h3>
+                            <p class="project-description text-center">
+                                Nuevos proyectos en desarrollo. <br>¡Mantente atento!
+                            </p>
+                            <div class="mt-3">
+                                <span class="tech-badge">En desarrollo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card reveal" style="border: 2px dashed var(--secondary-color); background-color: rgba(76, 175, 80, 0.05);">
+                        <div class="project-content text-center py-5">
+                            <i class="fas fa-rocket" style="font-size: 4rem; color: var(--secondary-color); margin-bottom: 20px;"></i>
+                            <h3 class="project-title">¡Próximamente!</h3>
+                            <p class="project-description text-center">
+                                Nuevos proyectos en desarrollo. <br>¡Mantente atento!
+                            </p>
+                            <div class="mt-3">
+                                <span class="tech-badge">En desarrollo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección de más proyectos (oculta por ahora) -->
+            <!-- 
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <a href="#" class="btn-outline-custom btn-lg">
+                        <i class="fas fa-folder-open me-2"></i>Ver todos los proyectos
+                    </a>
+                </div>
+            </div>
+            -->
+        </div>
     </section>
 
     <!-- FOOTER -->
@@ -172,10 +319,10 @@
                 <div class="col-lg-4 mb-4">
                     <div class="footer-logo">Portafolio<span>.</span></div>
                     <p class="footer-description">
-                        Desarrollador Full Stack especializado en crear soluciones digitales innovadoras y eficientes.
+                        Desarrollador Full Stack especializado en crear soluciones digitales innovadoras y eficientes. Comprometido con la excelencia y el aprendizaje continuo.
                     </p>
                     <div class="social-icons">
-                        <a href="#" class="social-icon">
+                        <a href="https://github.com/JDNG111" target="_blank" class="social-icon">
                             <i class="fab fa-github"></i>
                         </a>
                         <a href="#" class="social-icon">
@@ -199,26 +346,27 @@
                             <li><a href="proyectos.html" class="active">Proyectos</a></li>
                             <li><a href="index.html#skills">Habilidades</a></li>
                             <li><a href="contacto.html">Contacto</a></li>
+                            <li><a href="cv.html">CV</a></li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="col-lg-4 mb-4">
                     <div class="footer-links">
-                        <h5>Categorías de Proyectos</h5>
+                        <h5>Proyectos Destacados</h5>
                         <ul>
-                            <li><a href="#">Desarrollo Web</a></li>
-                            <li><a href="#">Aplicaciones Móviles</a></li>
-                            <li><a href="#">APIs y Backend</a></li>
-                            <li><a href="#">Base de Datos</a></li>
-                            <li><a href="#">DevOps & Cloud</a></li>
+                            <li><a href="proyectos.html">🤖 Machine Learning</a></li>
+                            <li><a href="proyectos.html">📱 Engineering English App</a></li>
+                            <li><a href="proyectos.html">🗳️ Sistema de Votaciones</a></li>
+                            <li><a href="proyectos.html">🍽️ Restoran - Laravel</a></li>
+                            <li><a href="proyectos.html">🔜 Próximamente</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 Portafolio Profesional. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Portafolio Profesional. Desarrollado con <i class="fas fa-heart" style="color: var(--secondary-color);"></i> por Julian Navarro</p>
             </div>
         </div>
     </footer>
