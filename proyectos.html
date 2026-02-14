@@ -67,6 +67,22 @@
             margin-right: 10px;
             margin-bottom: 5px;
         }
+        
+        /* Estilo para badges de tecnologías */
+        .tech-badge {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--secondary-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+        
+        .tech-badge i {
+            margin-right: 4px;
+            font-size: 0.7rem;
+        }
     </style>
 </head>
 <body>
@@ -134,11 +150,11 @@
                                 Aplicación web desarrollada como trabajo de grado para la predicción del metro cuadrado de un inmueble en la ciudad de Santiago de Cali.
                             </p>
                             <div class="tech-badge-group">
-                                <span class="tech-badge">Angular</span>
-                                <span class="tech-badge">Flask</span>
-                                <span class="tech-badge">Firebase Firestore</span>
-                                <span class="tech-badge">TypeScript</span>
-                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge"><i class="fab fa-angular"></i> Angular</span>
+                                <span class="tech-badge"><i class="fab fa-python"></i> Flask</span>
+                                <span class="tech-badge"><i class="fas fa-database"></i> Firebase</span>
+                                <span class="tech-badge"><i class="fab fa-js"></i> TypeScript</span>
+                                <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
                             </div>
                             <div class="project-features">
                                 <div class="feature-item"><i class="fas fa-check-circle"></i> Predicción ML</div>
@@ -169,11 +185,11 @@
                                 Aplicación móvil para estudiar lenguas extranjeras mediante diferentes lecciones y una IA conversacional.
                             </p>
                             <div class="tech-badge-group">
-                                <span class="tech-badge">Kotlin</span>
-                                <span class="tech-badge">Firebase</span>
-                                <span class="tech-badge">Android SDK</span>
-                                <span class="tech-badge">Chatbot API</span>
-                                <span class="tech-badge">Material Design</span>
+                                <span class="tech-badge"><i class="fab fa-android"></i> Kotlin</span>
+                                <span class="tech-badge"><i class="fas fa-database"></i> Firebase</span>
+                                <span class="tech-badge"><i class="fab fa-android"></i> Android SDK</span>
+                                <span class="tech-badge"><i class="fas fa-robot"></i> Chatbot API</span>
+                                <span class="tech-badge"><i class="fas fa-paint-brush"></i> Material Design</span>
                             </div>
                             <div class="project-features">
                                 <div class="feature-item"><i class="fas fa-check-circle"></i> IA conversacional</div>
@@ -204,11 +220,11 @@
                                 Aplicación web SPA para procesos electorales seguros y transparentes en instituciones, con autenticación y resultados en tiempo real.
                             </p>
                             <div class="tech-badge-group">
-                                <span class="tech-badge">SPA</span>
-                                <span class="tech-badge">Firebase</span>
-                                <span class="tech-badge">Authentication</span>
-                                <span class="tech-badge">Real-time DB</span>
-                                <span class="tech-badge">Bootstrap</span>
+                                <span class="tech-badge"><i class="fas fa-code"></i> SPA</span>
+                                <span class="tech-badge"><i class="fas fa-database"></i> Firebase</span>
+                                <span class="tech-badge"><i class="fas fa-lock"></i> Authentication</span>
+                                <span class="tech-badge"><i class="fas fa-sync-alt"></i> Real-time DB</span>
+                                <span class="tech-badge"><i class="fab fa-bootstrap"></i> Bootstrap</span>
                             </div>
                             <div class="project-features">
                                 <div class="feature-item"><i class="fas fa-check-circle"></i> Autenticación segura</div>
@@ -242,11 +258,11 @@
                                 Aplicación web completa para la gestión de restaurantes desarrollada con Laravel 12. Permite a usuarios explorar el menú, realizar reservas, gestionar pedidos y a administradores controlar todas las operaciones.
                             </p>
                             <div class="tech-badge-group">
-                                <span class="tech-badge">Laravel 12</span>
-                                <span class="tech-badge">PHP 8.2</span>
-                                <span class="tech-badge">MySQL</span>
-                                <span class="tech-badge">Bootstrap 5</span>
-                                <span class="tech-badge">Chart.js</span>
+                                <span class="tech-badge"><i class="fab fa-laravel"></i> Laravel 12</span>
+                                <span class="tech-badge"><i class="fab fa-php"></i> PHP 8.2</span>
+                                <span class="tech-badge"><i class="fas fa-database"></i> MySQL</span>
+                                <span class="tech-badge"><i class="fab fa-bootstrap"></i> Bootstrap 5</span>
+                                <span class="tech-badge"><i class="fas fa-chart-bar"></i> Chart.js</span>
                             </div>
                             <div class="project-features">
                                 <div class="feature-item"><i class="fas fa-utensils"></i> Menú interactivo</div>
@@ -267,22 +283,44 @@
                     </div>
                 </div>
                 
-                <!-- Espacio para futuros proyectos -->
+                <!-- Proyecto 5: TaskFlow - Gestión de Proyectos con Go y React -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="project-card reveal" style="border: 2px dashed var(--secondary-color); background-color: rgba(76, 175, 80, 0.05);">
-                        <div class="project-content text-center py-5">
-                            <i class="fas fa-code-branch" style="font-size: 4rem; color: var(--secondary-color); margin-bottom: 20px;"></i>
-                            <h3 class="project-title">¡Próximamente!</h3>
-                            <p class="project-description text-center">
-                                Nuevos proyectos en desarrollo. <br>¡Mantente atento!
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1540350394557-8d14678e7f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="TaskFlow - Gestión de Proyectos">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">🚀 TaskFlow - Gestión de Proyectos Colaborativa</h3>
+                            <p class="project-description">
+                                Aplicación full-stack de gestión de proyectos y tareas con Go en el backend y React en el frontend. Permite a usuarios crear proyectos, asignar tareas y colaborar en tiempo real con un tablero estilo Kanban y WebSockets.
                             </p>
-                            <div class="mt-3">
-                                <span class="tech-badge">En desarrollo</span>
+                            <div class="tech-badge-group">
+                                <span class="tech-badge"><i class="fab fa-golang"></i> Go 1.21+</span>
+                                <span class="tech-badge"><i class="fab fa-react"></i> React 18</span>
+                                <span class="tech-badge"><i class="fas fa-database"></i> PostgreSQL</span>
+                                <span class="tech-badge"><i class="fas fa-bolt"></i> WebSocket</span>
+                                <span class="tech-badge"><i class="fas fa-lock"></i> bcrypt</span>
+                            </div>
+                            <div class="project-features">
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Tablero Kanban</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Tiempo real</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Autenticación segura</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> API RESTful</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> PostgreSQL</div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/JDNG111/taskflow" target="_blank" class="btn-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Demo
+                                </a>
+                                <a href="https://github.com/JDNG111/taskflow" target="_blank" class="btn-outline-custom" style="padding: 8px 20px; font-size: 0.9rem;">
+                                    <i class="fab fa-github me-2"></i>Código
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Espacio para futuros proyectos (solo uno ahora) -->
                 <div class="col-lg-4 col-md-6">
                     <div class="project-card reveal" style="border: 2px dashed var(--secondary-color); background-color: rgba(76, 175, 80, 0.05);">
                         <div class="project-content text-center py-5">
@@ -298,17 +336,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Sección de más proyectos (oculta por ahora) -->
-            <!-- 
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <a href="#" class="btn-outline-custom btn-lg">
-                        <i class="fas fa-folder-open me-2"></i>Ver todos los proyectos
-                    </a>
-                </div>
-            </div>
-            -->
         </div>
     </section>
 
@@ -359,7 +386,7 @@
                             <li><a href="proyectos.html">📱 Engineering English App</a></li>
                             <li><a href="proyectos.html">🗳️ Sistema de Votaciones</a></li>
                             <li><a href="proyectos.html">🍽️ Restoran - Laravel</a></li>
-                            <li><a href="proyectos.html">🔜 Próximamente</a></li>
+                            <li><a href="proyectos.html">🚀 TaskFlow - Go/React</a></li>
                         </ul>
                     </div>
                 </div>
