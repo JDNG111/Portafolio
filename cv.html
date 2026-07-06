@@ -70,22 +70,541 @@
             <div class="cv-container reveal">
                 <h1 class="section-title text-start mb-4">Curriculum Vitae</h1>
                 
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="cv-preview">
-                            <img src="https://res.cloudinary.com/elmomaso/image/upload/v1769794078/Curr%C3%ADculum_Vitae_CV_modelo_ATS_Harvard_blanco_sencillo_ssvum5.png" 
-                                 alt="Curriculum Vitae" 
-                                 class="img-fluid cv-image"
-                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/800x1000/2c3e50/ffffff?text=CV+No+Disponible'">
-                        </div>
-                        
-                        <div class="cv-download-btn">
-                            <a href="https://res.cloudinary.com/elmomaso/image/upload/v1769794078/Curr%C3%ADculum_Vitae_CV_modelo_ATS_Harvard_blanco_sencillo_ssvum5.png" 
-                               download="Curriculum_Vitae.pdf" 
-                               class="btn-custom btn-lg">
-                                <i class="fas fa-download me-2"></i>Descargar CV (PDF)
-                            </a>
-                            <a href="index.html" class="btn-outline-custom btn-lg ms-3">
+               <style>
+  /* ============================================================
+     Puedes cambiar este color para que combine con tu sitio.
+     Es el único acento de color en todo el bloque.
+  ============================================================ */
+  :root{
+    --cv-accent: #1e5631;
+    --cv-accent-soft: #e8f3ea;
+    --cv-text: #262626;
+    --cv-muted: #6b6b6b;
+    --cv-border: #e2e2e2;
+  }
+ 
+  body{
+    font-family: 'Raleway', Arial, sans-serif;
+    background: #f4f5f6;
+    color: var(--cv-text);
+    padding: 40px 16px;
+  }
+ 
+  /* ---------- Botones de idioma ---------- */
+  .cv-lang-bar{
+    max-width: 820px;
+    margin: 0 auto 18px auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .btn-lang{
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1.5px solid var(--cv-accent);
+    background: #fff;
+    color: var(--cv-accent);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn-lang:hover{
+    background: var(--cv-accent-soft);
+  }
+  .btn-lang.active-btn{
+    background: var(--cv-accent);
+    color: #fff;
+  }
+ 
+  /* ---------- Documento del CV ---------- */
+  .cv-doc{
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--cv-border);
+    border-radius: 6px;
+    padding: 40px 44px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.05);
+  }
+ 
+  .cv-lang-block{ display:none; }
+  .cv-lang-block.active{ display:block; }
+ 
+  .cv-head{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    gap: 20px;
+    border-bottom: 2px solid var(--cv-accent);
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+  }
+  .cv-head h1{
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 1.5rem;
+    margin: 0 0 2px 0;
+    color: var(--cv-text);
+    letter-spacing: 0.01em;
+  }
+  .cv-head .role{
+    color: var(--cv-accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  .cv-head .contact{
+    font-size: 0.82rem;
+    color: var(--cv-muted);
+  }
+  .cv-head .contact a{ color: var(--cv-muted); text-decoration: none; border-bottom: 1px dotted var(--cv-muted); }
+  .cv-photo{
+    width: 78px; height: 78px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+    border: 2px solid var(--cv-accent-soft);
+  }
+ 
+  .cv-doc h2{
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--cv-accent);
+    margin: 26px 0 8px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--cv-border);
+  }
+  .cv-doc h2:first-of-type{ margin-top: 0; }
+ 
+  .cv-entry{ margin-bottom: 12px; }
+  .cv-entry-header{
+    display:flex; justify-content: space-between; align-items:baseline;
+    flex-wrap: wrap; gap: 4px 12px;
+  }
+  .cv-entry-title{ font-weight: 700; font-size: 0.95rem; }
+  .cv-entry-meta{ font-size: 0.8rem; color: var(--cv-muted); font-style: italic; }
+  .cv-entry-sub{ font-size: 0.82rem; color: var(--cv-muted); font-style: italic; margin-top: 1px; }
+ 
+  .cv-doc ul{ margin: 6px 0 0 0; padding-left: 18px; }
+  .cv-doc li{ font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px; }
+  .cv-doc p{ font-size: 0.88rem; line-height: 1.55; margin: 4px 0; }
+  .cv-note{ font-size: 0.8rem; color: var(--cv-muted); font-style: italic; }
+  .cv-doc a{ color: var(--cv-accent); }
+ 
+  @media (max-width: 600px){
+    .cv-doc{ padding: 26px 20px; }
+    .cv-head{ flex-direction: column-reverse; text-align: left; }
+  }
+</style>
+</head>
+<body>
+ 
+<div class="cv-lang-bar">
+  <button class="btn-lang" data-lang="en">Translate to English</button>
+  <button class="btn-lang" data-lang="fr">Traduire en français</button>
+</div>
+ 
+<div class="cv-doc" id="cv-doc">
+ 
+  <!-- ================= ESPAÑOL ================= -->
+  <div class="cv-lang-block active" data-lang="es">
+ 
+    <div class="cv-head">
+      <div>
+        <h1>Julian David Navarro Gutierrez</h1>
+        <div class="role">Ingeniero de Sistemas</div>
+        <div class="contact">
+          (+57) 312 234 9511 &nbsp;|&nbsp;
+          <a href="mailto:juliand-navarrog@unilibre.edu.co">juliand-navarrog@unilibre.edu.co</a> &nbsp;|&nbsp;
+          <a href="https://jdng111.github.io/Portafolio/" target="_blank">jdng111.github.io/Portafolio</a>
+        </div>
+      </div>
+      <img class="cv-photo" src="photo.jpg" alt="Foto de perfil">
+    </div>
+ 
+    <h2>Perfil</h2>
+    <p>Ingeniero de Sistemas con experiencia en el desarrollo de aplicaciones web, móviles y de escritorio. He participado en proyectos para el sector público y clientes particulares, desarrollando software desde el diseño hasta el despliegue. Me adapto con facilidad a nuevas tecnologías y disfruto resolver problemas mediante soluciones prácticas y escalables. Busco una oportunidad laboral donde pueda seguir formándome como ingeniero.</p>
+ 
+    <h2>Experiencia Laboral</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header">
+        <span class="cv-entry-title">Departamento Administrativo de Desarrollo e Innovación Institucional</span>
+        <span class="cv-entry-meta">2025 – 2026</span>
+      </div>
+      <div class="cv-entry-sub">Alcaldía de Santiago de Cali · Cali, Colombia</div>
+      <ul>
+        <li>Desarrollé una aplicación web para la gestión de votaciones internas de la entidad, participando en el diseño, la programación y las pruebas de funcionamiento, con el objetivo de dar mayor transparencia y trazabilidad a los procesos electorales internos.</li>
+        <li>Apoyé el análisis de datos administrativos mediante hojas de cálculo, organizando y depurando la información para facilitar la toma de decisiones del equipo directivo.</li>
+        <li>Brindé soporte técnico a usuarios finales en entornos Windows, resolviendo incidencias de conexión y configuración de equipos para mantener la operación continua del área.</li>
+      </ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header">
+        <span class="cv-entry-title">Desarrollador Full Stack – Freelancer</span>
+        <span class="cv-entry-meta">2023 – 2025</span>
+      </div>
+      <div class="cv-entry-sub">Proyectos independientes · Cali, Colombia</div>
+      <ul>
+        <li>Diseñé y desarrollé aplicaciones web a la medida para clientes independientes, usando Angular en el frontend y Spring Boot en el backend, para digitalizar procesos que antes se manejaban de forma manual.</li>
+        <li>Construí aplicaciones móviles nativas en Kotlin y prototipos rápidos con App Inventor, priorizando interfaces simples pensadas para usuarios sin experiencia técnica previa.</li>
+        <li>Entrené modelos de machine learning y desplegué chatbots conversacionales con Botpress, buscando automatizar tareas repetitivas.</li>
+      </ul>
+    </div>
+ 
+    <h2>Proyectos Destacados</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Gestión de Proyectos Colaborativa</span><span class="cv-entry-meta">Go, React, PostgreSQL, WebSocket</span></div>
+      <ul><li>Construí una plataforma full-stack de gestión de tareas con backend en Go y frontend en React, incorporando comunicación en tiempo real vía WebSocket para que los equipos vean las actualizaciones de sus tareas.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Sistema de Gestión de Turnos</span><span class="cv-entry-meta">Java 17, Spring Boot, Vue.js 3, PostgreSQL</span></div>
+      <ul><li>Desarrollé un sistema de gestión de turnos con dashboard analítico en tiempo real, usando Spring Boot en el backend y Vue.js en el frontend, pensado para reducir los tiempos de espera y dar visibilidad al operador sobre la demanda del servicio.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Gestión de Restaurante</span><span class="cv-entry-meta">Laravel 12, PHP, MySQL</span></div>
+      <ul><li>Desarrollé una aplicación web para restaurantes que permite explorar el menú y gestionar pedidos, buscando simplificar la operación diaria de negocios pequeños del sector gastronómico.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Sistema de Votaciones Electrónicas</span><span class="cv-entry-meta">Firebase, JavaScript, Bootstrap</span></div>
+      <ul><li>Desarrollé un sistema de votaciones en línea con autenticación mediante Google, implementando reglas de seguridad en Firestore para impedir la doble votación y validar los horarios de la elección desde el servidor. Además, optimicé el consumo de lecturas de la base de datos y agregué generación automática de certificados de participación descargables.</li></ul>
+    </div>
+    <p class="cv-note">Más proyectos, demos en vivo y código disponibles en mi portafolio: <a href="https://jdng111.github.io/Portafolio/" target="_blank">jdng111.github.io/Portafolio</a></p>
+ 
+    <h2>Publicaciones</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header">
+        <span class="cv-entry-title">Desarrollo de un Modelo de Machine Learning para la Predicción del Metro Cuadrado de un Inmueble en la Ciudad de Santiago de Cali</span>
+        <span class="cv-entry-meta">Abril 2026</span>
+      </div>
+      <div class="cv-entry-sub">Tesis de pregrado, Universidad Libre – Seccional Cali. Coautor: Santiago González Olarte.</div>
+      <ul>
+        <li>Diseñé un modelo de machine learning para predecir el precio por metro cuadrado de inmuebles en Cali a partir de variables estructurales y socio-espaciales, con el fin de reducir las asimetrías de información del mercado inmobiliario local.</li>
+        <li>Como parte del proyecto, construí un dataset público y una metodología replicable, pensada para que otros investigadores puedan reutilizarla en ciudades con condiciones similares.</li>
+        <li>Repositorio institucional: <a href="https://hdl.handle.net/10901/32768" target="_blank">hdl.handle.net/10901/32768</a></li>
+      </ul>
+    </div>
+ 
+    <h2>Formación Académica</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Ingeniero de Sistemas</span><span class="cv-entry-meta">Universidad Libre, Seccional Cali</span></div>
+      <div class="cv-entry-sub">Cursada en su totalidad mediante beca académica del 100%.</div>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Técnico en Sistemas</span><span class="cv-entry-meta">SENA, Cali</span></div>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Bachillerato</span><span class="cv-entry-meta">IETI Comuna 17, Cali</span></div>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Lifetime English</span><span class="cv-entry-meta">Centro Cultural Colombo Americano, Cali</span></div>
+      <div class="cv-entry-sub">Programa cursado mediante beca por excelencia académica.</div>
+    </div>
+ 
+    <h2>Certificaciones y Formación Complementaria</h2>
+    <ul>
+      <li>Carrera Profesional de Analista Junior en Ciberseguridad – Cisco</li>
+      <li>Cybersecurity – EC-Council</li>
+      <li>Desarrollo Backend .NET</li>
+      <li>Python</li>
+      <li>Administración Documental en el Entorno Laboral – SENA</li>
+      <li>Despliegue de Aplicaciones y Servicios en Contenedores Docker – SENA</li>
+      <li>Fundamentos de C++ y Java – SENA</li>
+      <li>Job simulations en analítica de datos, project management e ingeniería de software – Forage (Tata Group, British Airways, Walmart USA)</li>
+    </ul>
+    <p class="cv-note">Listado completo de certificados disponible en: <a href="https://drive.google.com/drive/folders/1LVoFbDMg5ge3phOrloJ7Xa4xBn89rC9q?usp=sharing" target="_blank">Certificaciones</a></p>
+ 
+    <h2>Logros y Participación en Eventos</h2>
+    <ul>
+      <li>Ponente en el X Congreso de Ingeniería Industrial Nacional e Internacional (CIINI)</li>
+      <li>Beca del 100% para cursar Ingeniería de Sistemas</li>
+      <li>Ponente en el III Encuentro de Semilleros y Experiencias de Aula</li>
+    </ul>
+ 
+    <h2>Habilidades e Idiomas</h2>
+    <p><strong>Técnicas:</strong> Angular, React, Vue.js, Spring Boot, Python/Flask, Kotlin/Android, Java, C#, .NET, Docker, Firebase, SQL, Git</p>
+    <p><strong>Idiomas:</strong> Español (nativo), Inglés (B2)</p>
+    <p><strong>Habilidades blandas:</strong> Aprendizaje autónomo, trabajo en equipo, comunicación en público (ponente en congresos académicos)</p>
+ 
+  </div>
+ 
+  <!-- ================= ENGLISH ================= -->
+  <div class="cv-lang-block" data-lang="en">
+ 
+    <div class="cv-head">
+      <div>
+        <h1>Julian David Navarro Gutierrez</h1>
+        <div class="role">Systems Engineer</div>
+        <div class="contact">
+          (+57) 312 234 9511 &nbsp;|&nbsp;
+          <a href="mailto:juliand-navarrog@unilibre.edu.co">juliand-navarrog@unilibre.edu.co</a> &nbsp;|&nbsp;
+          <a href="https://jdng111.github.io/Portafolio/" target="_blank">jdng111.github.io/Portafolio</a>
+        </div>
+      </div>
+      <img class="cv-photo" src="photo.jpg" alt="Profile photo">
+    </div>
+ 
+    <h2>Profile</h2>
+    <p>Systems Engineer with experience developing web, mobile, and desktop applications. I have worked on projects for the public sector and private clients, building software from design through deployment. I adapt quickly to new technologies and enjoy solving problems with practical, scalable solutions. I'm looking for a job opportunity where I can keep growing as an engineer.</p>
+ 
+    <h2>Work Experience</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header">
+        <span class="cv-entry-title">Administrative Department of Institutional Development and Innovation</span>
+        <span class="cv-entry-meta">2025 – 2026</span>
+      </div>
+      <div class="cv-entry-sub">Mayor's Office of Santiago de Cali · Cali, Colombia</div>
+      <ul>
+        <li>Developed a web application to manage the institution's internal voting processes, taking part in the design, programming, and testing, aiming to bring greater transparency and traceability to internal electoral procedures.</li>
+        <li>Supported administrative data analysis using spreadsheets, organizing and cleaning information to help the leadership team make decisions.</li>
+        <li>Provided technical support to end users in Windows environments, resolving connectivity and equipment configuration issues to keep the department running smoothly.</li>
+      </ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header">
+        <span class="cv-entry-title">Full Stack Developer – Freelance</span>
+        <span class="cv-entry-meta">2023 – 2025</span>
+      </div>
+      <div class="cv-entry-sub">Independent projects · Cali, Colombia</div>
+      <ul>
+        <li>Designed and built custom web applications for independent clients, using Angular on the frontend and Spring Boot on the backend, to digitize processes that used to be handled manually.</li>
+        <li>Built native mobile applications in Kotlin and rapid prototypes with App Inventor, prioritizing simple interfaces for users with no prior technical experience.</li>
+        <li>Trained machine learning models and deployed conversational chatbots with Botpress, aiming to automate repetitive tasks.</li>
+      </ul>
+    </div>
+ 
+    <h2>Featured Projects</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Collaborative Project Management</span><span class="cv-entry-meta">Go, React, PostgreSQL, WebSocket</span></div>
+      <ul><li>Built a full-stack task management platform with a Go backend and React frontend, adding real-time communication via WebSocket so teams can see task updates live.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Queue Management System</span><span class="cv-entry-meta">Java 17, Spring Boot, Vue.js 3, PostgreSQL</span></div>
+      <ul><li>Developed a queue management system with a real-time analytics dashboard, using Spring Boot on the backend and Vue.js on the frontend, designed to reduce wait times and give operators visibility into service demand.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Restaurant Management</span><span class="cv-entry-meta">Laravel 12, PHP, MySQL</span></div>
+      <ul><li>Built a web application for restaurants that lets users browse the menu and manage orders, aiming to simplify day-to-day operations for small food businesses.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Electronic Voting System</span><span class="cv-entry-meta">Firebase, JavaScript, Bootstrap</span></div>
+      <ul><li>Developed an online voting system with Google authentication, implementing Firestore security rules to prevent double voting and validate election schedules server-side. I also optimized database read usage and added automatic generation of downloadable participation certificates.</li></ul>
+    </div>
+    <p class="cv-note">More projects, live demos, and code available on my portfolio: <a href="https://jdng111.github.io/Portafolio/" target="_blank">jdng111.github.io/Portafolio</a></p>
+ 
+    <h2>Publications</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header">
+        <span class="cv-entry-title">Development of a Machine Learning Model to Predict Price per Square Meter of Real Estate in the City of Santiago de Cali</span>
+        <span class="cv-entry-meta">April 2026</span>
+      </div>
+      <div class="cv-entry-sub">Undergraduate thesis, Universidad Libre – Cali Campus. Co-author: Santiago González Olarte.</div>
+      <ul>
+        <li>Designed a machine learning model to predict the price per square meter of properties in Cali based on structural and socio-spatial variables, aiming to reduce information asymmetries in the local real estate market.</li>
+        <li>As part of the project, built a public dataset and a replicable methodology intended for other researchers to reuse in cities with similar conditions.</li>
+        <li>Institutional repository: <a href="https://hdl.handle.net/10901/32768" target="_blank">hdl.handle.net/10901/32768</a></li>
+      </ul>
+    </div>
+ 
+    <h2>Education</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Systems Engineering</span><span class="cv-entry-meta">Universidad Libre, Cali Campus</span></div>
+      <div class="cv-entry-sub">Fully funded through a 100% academic scholarship.</div>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Systems Technician</span><span class="cv-entry-meta">SENA, Cali</span></div>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">High School Diploma</span><span class="cv-entry-meta">IETI Comuna 17, Cali</span></div>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Lifetime English</span><span class="cv-entry-meta">Colombian-American Cultural Center, Cali</span></div>
+      <div class="cv-entry-sub">Completed through an academic-excellence scholarship.</div>
+    </div>
+ 
+    <h2>Certifications & Additional Training</h2>
+    <ul>
+      <li>Junior Cybersecurity Analyst Professional Track – Cisco</li>
+      <li>Cybersecurity – EC-Council</li>
+      <li>.NET Backend Development</li>
+      <li>Python</li>
+      <li>Document Management in the Workplace – SENA</li>
+      <li>Deploying Applications and Services in Docker Containers – SENA</li>
+      <li>C++ and Java Fundamentals – SENA</li>
+      <li>Job simulations in data analytics, project management, and software engineering – Forage (Tata Group, British Airways, Walmart USA)</li>
+    </ul>
+    <p class="cv-note">Full list of certificates available at: <a href="https://drive.google.com/drive/folders/1LVoFbDMg5ge3phOrloJ7Xa4xBn89rC9q?usp=sharing" target="_blank">Certifications</a></p>
+ 
+    <h2>Achievements & Event Participation</h2>
+    <ul>
+      <li>Speaker at the 10th National and International Industrial Engineering Congress (CIINI)</li>
+      <li>100% scholarship to study Systems Engineering</li>
+      <li>Speaker at the 3rd Student Research Groups and Classroom Experiences Meeting</li>
+    </ul>
+ 
+    <h2>Skills & Languages</h2>
+    <p><strong>Technical:</strong> Angular, React, Vue.js, Spring Boot, Python/Flask, Kotlin/Android, Java, C#, .NET, Docker, Firebase, SQL, Git</p>
+    <p><strong>Languages:</strong> Spanish (native), English (B2)</p>
+    <p><strong>Soft skills:</strong> Independent learning, teamwork, public speaking (speaker at academic conferences)</p>
+ 
+  </div>
+ 
+  <!-- ================= FRANÇAIS ================= -->
+  <div class="cv-lang-block" data-lang="fr">
+ 
+    <div class="cv-head">
+      <div>
+        <h1>Julian David Navarro Gutierrez</h1>
+        <div class="role">Ingénieur en systèmes informatiques</div>
+        <div class="contact">
+          (+57) 312 234 9511 &nbsp;|&nbsp;
+          <a href="mailto:juliand-navarrog@unilibre.edu.co">juliand-navarrog@unilibre.edu.co</a> &nbsp;|&nbsp;
+          <a href="https://jdng111.github.io/Portafolio/" target="_blank">jdng111.github.io/Portafolio</a>
+        </div>
+      </div>
+      <img class="cv-photo" src="photo.jpg" alt="Photo de profil">
+    </div>
+ 
+    <h2>Profil</h2>
+    <p>Ingénieur en systèmes informatiques avec de l'expérience dans le développement d'applications web, mobiles et de bureau. J'ai participé à des projets pour le secteur public et pour des clients privés, en développant des logiciels de la conception jusqu'au déploiement. Je m'adapte facilement aux nouvelles technologies et j'aime résoudre des problèmes grâce à des solutions pratiques et évolutives. Je recherche une opportunité professionnelle me permettant de continuer à me former en tant qu'ingénieur.</p>
+ 
+    <h2>Expérience Professionnelle</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header">
+        <span class="cv-entry-title">Département administratif du développement et de l'innovation institutionnelle</span>
+        <span class="cv-entry-meta">2025 – 2026</span>
+      </div>
+      <div class="cv-entry-sub">Mairie de Santiago de Cali · Cali, Colombie</div>
+      <ul>
+        <li>Développé une application web pour la gestion des votes internes de l'entité, en participant à la conception, à la programmation et aux tests de fonctionnement, dans le but d'apporter plus de transparence et de traçabilité aux processus électoraux internes.</li>
+        <li>Soutenu l'analyse des données administratives à l'aide de tableurs, en organisant et en nettoyant les informations pour faciliter la prise de décision de l'équipe de direction.</li>
+        <li>Fourni un support technique aux utilisateurs finaux sous environnement Windows, en résolvant des incidents de connexion et de configuration afin de maintenir la continuité opérationnelle du service.</li>
+      </ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header">
+        <span class="cv-entry-title">Développeur Full Stack – Freelance</span>
+        <span class="cv-entry-meta">2023 – 2025</span>
+      </div>
+      <div class="cv-entry-sub">Projets indépendants · Cali, Colombie</div>
+      <ul>
+        <li>Conçu et développé des applications web sur mesure pour des clients indépendants, en utilisant Angular pour le frontend et Spring Boot pour le backend, afin de numériser des processus auparavant gérés manuellement.</li>
+        <li>Développé des applications mobiles natives avec Kotlin, ainsi que des prototypes rapides avec App Inventor, en privilégiant des interfaces simples pour des utilisateurs sans expérience technique préalable.</li>
+        <li>Entraîné des modèles de machine learning et déployé des chatbots conversationnels avec Botpress, dans le but d'automatiser des tâches répétitives.</li>
+      </ul>
+    </div>
+ 
+    <h2>Projets Phares</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Gestion de Projets Collaborative</span><span class="cv-entry-meta">Go, React, PostgreSQL, WebSocket</span></div>
+      <ul><li>Construit une plateforme full-stack de gestion de tâches avec un backend en Go et un frontend en React, en intégrant une communication en temps réel via WebSocket afin que les équipes voient les mises à jour de leurs tâches en direct.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Système de Gestion de Files d'Attente</span><span class="cv-entry-meta">Java 17, Spring Boot, Vue.js 3, PostgreSQL</span></div>
+      <ul><li>Développé un système de gestion de files d'attente avec un tableau de bord analytique en temps réel, en utilisant Spring Boot pour le backend et Vue.js pour le frontend, conçu pour réduire les temps d'attente et donner à l'opérateur une visibilité sur la demande de service.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Gestion de Restaurant</span><span class="cv-entry-meta">Laravel 12, PHP, MySQL</span></div>
+      <ul><li>Développé une application web pour restaurants permettant de consulter le menu et de gérer les commandes, dans le but de simplifier la gestion quotidienne des petits commerces du secteur de la restauration.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Système de Vote Électronique</span><span class="cv-entry-meta">Firebase, JavaScript, Bootstrap</span></div>
+      <ul><li>Développé un système de vote en ligne avec authentification via Google, en mettant en place des règles de sécurité Firestore pour empêcher le double vote et valider les horaires de l'élection côté serveur. J'ai également optimisé la consommation de lectures de la base de données et ajouté la génération automatique de certificats de participation téléchargeables.</li></ul>
+    </div>
+    <p class="cv-note">Plus de projets, démonstrations en direct et code disponibles sur mon portfolio : <a href="https://jdng111.github.io/Portafolio/" target="_blank">jdng111.github.io/Portafolio</a></p>
+ 
+    <h2>Publications</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header">
+        <span class="cv-entry-title">Développement d'un Modèle de Machine Learning pour la Prédiction du Prix au Mètre Carré d'un Bien Immobilier dans la Ville de Santiago de Cali</span>
+        <span class="cv-entry-meta">Avril 2026</span>
+      </div>
+      <div class="cv-entry-sub">Mémoire de licence, Universidad Libre – Campus de Cali. Co-auteur : Santiago González Olarte.</div>
+      <ul>
+        <li>Conçu un modèle de machine learning permettant de prédire le prix au mètre carré des biens immobiliers à Cali à partir de variables structurelles et socio-spatiales, dans le but de réduire les asymétries d'information du marché immobilier local.</li>
+        <li>Dans le cadre de ce projet, construit un jeu de données public ainsi qu'une méthodologie reproductible, destinée à être réutilisée par d'autres chercheurs dans des villes aux conditions similaires.</li>
+        <li>Dépôt institutionnel : <a href="https://hdl.handle.net/10901/32768" target="_blank">hdl.handle.net/10901/32768</a></li>
+      </ul>
+    </div>
+ 
+    <h2>Formation Académique</h2>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Ingénierie des Systèmes</span><span class="cv-entry-meta">Universidad Libre, Campus de Cali</span></div>
+      <div class="cv-entry-sub">Études entièrement financées par une bourse académique à 100 %.</div>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Technicien en Systèmes</span><span class="cv-entry-meta">SENA, Cali</span></div>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Baccalauréat</span><span class="cv-entry-meta">IETI Comuna 17, Cali</span></div>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-header"><span class="cv-entry-title">Lifetime English</span><span class="cv-entry-meta">Centre Culturel Colombo-Américain, Cali</span></div>
+      <div class="cv-entry-sub">Programme suivi grâce à une bourse d'excellence académique.</div>
+    </div>
+ 
+    <h2>Certifications et Formation Complémentaire</h2>
+    <ul>
+      <li>Parcours professionnel Analyste Junior en Cybersécurité – Cisco</li>
+      <li>Cybersécurité – EC-Council</li>
+      <li>Développement Backend .NET</li>
+      <li>Python</li>
+      <li>Gestion documentaire en milieu professionnel – SENA</li>
+      <li>Déploiement d'applications et de services en conteneurs Docker – SENA</li>
+      <li>Fondamentaux de C++ et Java – SENA</li>
+      <li>Simulations professionnelles (job simulations) en analyse de données, gestion de projet et ingénierie logicielle – Forage (Tata Group, British Airways, Walmart USA)</li>
+    </ul>
+    <p class="cv-note">Liste complète des certificats disponible ici : <a href="https://drive.google.com/drive/folders/1LVoFbDMg5ge3phOrloJ7Xa4xBn89rC9q?usp=sharing" target="_blank">Certifications</a></p>
+ 
+    <h2>Réalisations et Participation à des Événements</h2>
+    <ul>
+      <li>Intervenant au 10e Congrès National et International d'Ingénierie Industrielle (CIINI)</li>
+      <li>Bourse à 100 % pour des études en ingénierie des systèmes</li>
+      <li>Intervenant à la 3e Rencontre des Groupes de Recherche Étudiants et Expériences de Classe</li>
+    </ul>
+ 
+    <h2>Compétences et Langues</h2>
+    <p><strong>Techniques :</strong> Angular, React, Vue.js, Spring Boot, Python/Flask, Kotlin/Android, Java, C#, .NET, Docker, Firebase, SQL, Git</p>
+    <p><strong>Langues :</strong> Espagnol (langue maternelle), Anglais (B2)</p>
+    <p><strong>Compétences non techniques :</strong> Apprentissage autonome, travail d'équipe, prise de parole en public (intervenant lors de conférences académiques)</p>
+ 
+  </div>
+ 
+</div>
+ 
+<script>
+(function(){
+  var buttons = document.querySelectorAll('.btn-lang');
+  var blocks = document.querySelectorAll('.cv-lang-block');
+  var currentLang = 'es';
+  var defaultLabels = {};
+  buttons.forEach(function(b){ defaultLabels[b.dataset.lang] = b.textContent; });
+ 
+  function render(){
+    blocks.forEach(function(b){
+      b.classList.toggle('active', b.dataset.lang === currentLang);
+    });
+    buttons.forEach(function(b){
+      var lang = b.dataset.lang;
+      var isActive = currentLang === lang;
+      b.textContent = isActive ? 'Ver en español' : defaultLabels[lang];
+      b.classList.toggle('active-btn', isActive);
+    });
+  }
+ 
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var lang = btn.dataset.lang;
+      currentLang = (currentLang === lang) ? 'es' : lang;
+      render();
+    });
+  });
+})();
+</script>
+ 
+</body>
+                <a href="index.html" class="btn-outline-custom btn-lg ms-3">
                                 <i class="fas fa-arrow-left me-2"></i>Volver al Inicio
                             </a>
                         </div>
